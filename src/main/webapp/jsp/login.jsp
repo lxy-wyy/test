@@ -1,123 +1,164 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: dell
-  Date: 2019/9/2
-  Time: 8:59
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<!doctype html>
+<html lang="en">
 <head>
-    <link href="${pageContext.request.contextPath}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/assets/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/assets/css/ace.min.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/assets/css/ace-rtl.min.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/assets/css/ace-skins.min.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/static/assets/style.css"/>
-    <script src="${pageContext.request.contextPath}/static/common/jquery-3.2.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/static/assets/js/ace-extra.min.js"></script>
-<%--    <script src="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>--%>
-    <script src="${pageContext.request.contextPath}/static/assets/layer/layer.js" type="text/javascript"></script>
-    <title>登录</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<link href="${pageContext.request.contextPath}/static/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/assets/css/font-awesome.min.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/assets/css/ace.min.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/assets/css/ace-rtl.min.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/assets/css/ace-skins.min.css" />
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/static/assets/style.css"/>
+	<script src="${pageContext.request.contextPath}/static/assets/js/ace-extra.min.js"></script>
+	<script src="${pageContext.request.contextPath}/static/common/jquery-3.2.1.min.js"></script>
+	<script src="${pageContext.request.contextPath}/static/assets/layer/layer.js" type="text/javascript"></script>
+<title>登陆</title>
 </head>
-<body>
 
-
-<%--<div class="container-fluid">
-    <div class="row-fluid">
-        <div class="span12">
-            <div class="navbar">
-                <div class="navbar-inner">
-                    <div class="container-fluid">
-                        <a data-target=".navbar-responsive-collapse" data-toggle="collapse" class="btn btn-navbar">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span><span class="icon-bar"></span></a>
-                        <a href="#" class="brand">太平洋保险</a>
-                        <div class="nav-collapse collapse navbar-responsive-collapse">
-                            <ul class="nav">
-                                <li class="active">
-                                    <a href="#">主页</a>
-                                </li>
-                                <li>
-                                    <a href="#">链接</a>
-                                </li>
-                                <li>
-                                    <a href="#">链接</a>
-                                </li>
-                                <li class="dropdown">
-                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">下拉菜单<strong class="caret"></strong></a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">下拉导航1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">下拉导航2</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">其他</a>
-                                        </li>
-                                        <li class="divider">
-                                        </li>
-                                        <li class="nav-header">
-                                            标签
-                                        </li>
-                                        <li>
-                                            <a href="#">链接1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">链接2</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                            <ul class="nav pull-right">
-                                <li>
-                                    <a href="#">右边链接</a>
-                                </li>
-                                <li class="divider-vertical">
-                                </li>
-                                <li class="dropdown">
-                                    <a data-toggle="dropdown" class="dropdown-toggle" href="#">下拉菜单<strong class="caret"></strong></a>
-                                    <ul class="dropdown-menu">
-                                        <li>
-                                            <a href="#">下拉导航1</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">下拉导航2</a>
-                                        </li>
-                                        <li>
-                                            <a href="#">其他</a>
-                                        </li>
-                                        <li class="divider">
-                                        </li>
-                                        <li>
-                                            <a href="#">链接3</a>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </div>
-
-                    </div>
-                </div>
-
-            </div>--%>
-            <form action="/user/login" method="post">
-                <fieldset>
-                    <legend>登录</legend>
-                    <label> 用户名:</label><input name="username" type="text"><br>
-                    <label> 密码:</label><input name="password" type="text"><br>
-                    <input type="submit" value="提交">
-                </fieldset>
-            </form>
-            <div class="media">
-                <a href="#" class="pull-left">
-                    <img src="${pageContext.request.contextPath}/static/images/bjt.jpg" alt='' />
-                </a>
-            </div>
-        </div>
+<body class="login-layout Reg_log_style">
+<div class="logintop">    
+    <span>欢迎进入诚美酒会管理系统</span>    
+    <ul>    <li><a href="#">返回首页</a></li>
+    <li><a href="#">帮助</a></li>
+    <li><a href="#">关于</a></li>
+    </ul>    
     </div>
-</div>
+    <div class="loginbody">
+<div class="login-container">
+	<div class="center">
+	     
+							</div>
 
+							<div class="space-6"></div>
+
+							<div class="position-relative">
+								<div id="login-box" class="login-box widget-box no-border visible">
+									<div class="widget-body">
+										<div class="widget-main">
+											<h4 class="header blue lighter bigger">
+												<i class="icon-coffee green"></i>
+												管理员登陆
+											</h4>
+
+											<div class="login_icon"><img src="${pageContext.request.contextPath}/static/images/login.png" /></div>
+
+											<form id="login_form">
+												<fieldset>
+										<ul>
+   <li class="frame_style form_error">
+	   <label class="user_icon"></label>
+	   <input name="username" type="text"  id="username"/><i>用户名</i></li>
+   <li class="frame_style form_error">
+	   <label class="password_icon"></label>
+	   <input name="userpwd" type="password"   id="userpwd"/><i>密码</i></li>
+   
+  </ul>
+													<div class="space"></div>
+
+													<div class="clearfix">
+
+														<button type="button" class="width-35 pull-right btn btn-sm btn-primary" id="login_btn">
+															<i class="icon-key"></i>
+															登陆
+														</button>
+													</div>
+
+													<div class="space-4"></div>
+												</fieldset>
+											</form>
+
+											<div class="social-or-login center">
+												<span class="bigger-110">通知</span>
+											</div>
+
+											<div class="social-login center">
+											本网站系统不再对IE8以下浏览器支持，请见谅。
+											</div>
+										</div><!-- /widget-main -->
+
+										<div class="toolbar clearfix">
+											
+
+											
+										</div>
+									</div><!-- /widget-body -->
+								</div><!-- /login-box -->
+							</div><!-- /position-relative -->
+						</div>
+                        </div>
+                        <div class="loginbm">版权所有  2018 <a href="">北京工商管理专修学院</a> </div><strong></strong>
 </body>
 </html>
+<script>
+
+  $(document).ready(function(){
+      $('#login_btn').on('click', function(){
+          var num=0;
+          var str="";
+          $("input[type$='text'],input[type$='password']").each(function(n){
+              if($(this).val()=="")
+              {
+                  layer.alert(str+=""+$(this).attr("name")+"不能为空！\r\n",{
+                      title: '提示框',
+                      icon:0,
+                  });
+                  num++;
+                  return false;
+              }
+          });
+          if(num>0){  return false;}else{
+              $.ajax({
+				  type:"post",
+				  url:"${pageContext.request.contextPath }/user/dl",
+				  data:$("#login_form").serialize(),
+				  dataType:"json",
+				  error:function(error){
+                      layer.alert('登陆失败！',{
+                          title: '提示框',
+                          icon:0,
+                      });
+				  },success:function(data){
+                      if(data.flag){
+                          layer.alert('登陆成功！',{
+                              title: '提示框',
+                              icon:1,
+                          });
+                          location.href="${pageContext.request.contextPath}/jsp/common/left.jsp";
+                          layer.close(index);
+					  }else{
+                          layer.alert(data.message,{
+                              title: '提示框',
+                              icon:0,
+                          });
+					  }
+				  }
+			  });
+
+
+          }
+
+      });
+
+      //用户名和密码 校验
+	 $("input[type='text'],input[type='password']").blur(function(){//失去焦点事件
+        var $el = $(this);
+        var $parent = $el.parent();
+        $parent.attr('class','frame_style').removeClass(' form_error');
+        if($el.val()==''){
+            $parent.attr('class','frame_style').addClass(' form_error');
+        }
+    });
+     
+	$("input[type='text'],input[type='password']").focus(function(){//获取焦点事件	
+		var $el = $(this);
+        var $parent = $el.parent();
+        $parent.attr('class','frame_style').removeClass(' form_errors');
+        if($el.val()==''){
+            $parent.attr('class','frame_style').addClass(' form_errors');
+        } else{
+			 $parent.attr('class','frame_style').removeClass(' form_errors');
+		}
+		});
+	  })
+
+</script>

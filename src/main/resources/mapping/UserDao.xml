@@ -6,4 +6,73 @@
 		select * from sys_user where username=#{name} and password=#{pwd};
 	</select>
 
+
+	<update id="update2">
+   update `sys_area` set area_name=#{name} where id=#{id}
+  </update>
+
+
+	<update id="update3">
+   update `sys_dept` set dept_name=#{name} where id=#{id}
+  </update>
+
+
+	<insert id="add1">
+		INSERT INTO `sys_area`(area_name,parent_id,type)
+		VALUES(#{name},#{pId},#{isParent})
+ </insert>
+
+	<insert id="add2">
+		INSERT INTO `sys_dept`(dept_name,area_id,type)
+		VALUES(#{name},#{pId},#{isParent})
+ </insert>
+
+	<delete id="del1">
+  delete from `sys_area` where id=#{id}
+  </delete>
+	<delete id="del2">
+  delete from `sys_dept` where id=#{id}
+  </delete>
+
+	<select id="getdept" resultType="com.buba.pojo.Area">
+    SELECT id,dept_name AS name,area_id AS pId,type
+FROM `sys_dept`
+WHERE area_id=#{id} AND type='xian'
+  </select>
+
+	<select id="dl" resultType="com.buba.pojo.User">
+      SELECT `sys_user`.*,`sys_role`.name FROM `sys_user`,`sys_role` where `sys_user`.level=`sys_role`.level and username=#{username} and password=#{password}
+  </select>
+
+	<update id="update">
+   update `sys_user` set password=#{password} where username=#{username}
+  </update>
+	<select id="all" resultType="com.buba.pojo.Area">
+     SELECT `sys_area`.`id`,`sys_area`.`area_name` AS NAME,`sys_area`.`parent_id` AS pId,`sys_area`.`type` AS isParent
+     FROM `sys_area`
+  </select>
+	<select id="getall" resultType="com.buba.pojo.Area">
+    SELECT id,username AS name,area_id AS pId
+FROM `sys_user`
+WHERE area_id=#{id} AND LEVEL=0
+  </select>
+	<select id="getid" resultType="com.buba.pojo.User">
+  SELECT *
+FROM `sys_user`
+WHERE `sys_user`.`username`= #{username}
+  </select>
+	<delete id="del">
+ delete from `sys_user` where `sys_user`.`username`= #{username}
+ </delete>
+
+	<insert id="add">
+		INSERT INTO `sys_user`(usercode,username,password,level,area_id,area_code,phone,email)
+		VALUES(#{usercode},#{username},#{password},#{level},#{areaId},#{areaCode},#{phone},#{email})
+ </insert>
+	<update id="update1">
+   update `sys_user`
+   set usercode=#{usercode},username=#{username},level=#{level}
+   where id=#{id}
+  </update>
+
 </mapper>

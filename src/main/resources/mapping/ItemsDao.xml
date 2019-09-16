@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.buba.dao.ItemsDao">  
+   <select id="daochu" resultType="com.buba.pojo.Items">
+		select `items`.*,`plan`.num_activities,`sys_user`.username,ROUND(items.num_actual/plan.num_activities,2)*100 AS zxl from `items`,`plan`,`sys_user` 
+        where `items`.dept_id=#{deptId} and `items`.user_id=`sys_user`.id and `items`.activitiesname=`plan`.activitiesname          
+		<if test="time1==null and time2==null">
+			and YEAR(createtime)=YEAR(NOW())
+		</if>
+		<if test="time1!=null and time1!=''">
+			and createtime &gt;=#{time1}
+		</if>
+		<if test="time2!=null and time2!=''">
+			and createtime &lt;=#{time2}
+		</if>
+	</select>
+
+   <select id="daochu2" resultType="com.buba.pojo.Items">
+		SELECT 
+       `plan`.`dept_name`,
+        `plan`.dept_id,
+       SUM(`items`.num_actual) AS num_actual,
+       SUM(`plan`.num_activities) AS num_activities,
+       ROUND(SUM(`items`.num_actual)/SUM(`plan`.num_activities),2)*100 AS zxl,  
+       SUM(`items`.new_client) AS new_client,
+       SUM(`items`.old_client) AS old_client,
+       SUM(`items`.yx_client) AS yx_client,
+       SUM(`items`.money) AS money
+       FROM `items`,`plan`
+       WHERE `items`.area_id=#{areaId}
+       AND `items`.plan_id=`plan`.id
+		<if test="time3==null and time4==null">
+			and YEAR(createtime)=YEAR(NOW())
+		</if>
+		<if test="time3!=null and time3!=''">
+			and createtime &gt;=#{time3}
+		</if>
+		<if test="time4!=null and time4!=''">
+			and createtime &lt;=#{time4}
+		</if>
+       GROUP BY `plan`.`dept_name`        
+	</select>
+
+
+    <select id="daochu3" resultType="com.buba.pojo.Items">
+		SELECT 
+       `sys_area`.`area_name`,
+       `items`.`area_id`,
+       SUM(`items`.num_actual) AS num_actual,
+       SUM(`plan`.num_activities) AS num_activities,
+       ROUND(SUM(`items`.num_actual)/SUM(`plan`.num_activities),2)*100 AS zxl,  
+       SUM(`items`.new_client) AS new_client,
+       SUM(`items`.old_client) AS old_client,
+       SUM(`items`.yx_client) AS yx_client,
+       SUM(`items`.money) AS money
+       FROM `items`,`plan`,`sys_area`
+       WHERE`items`.area_id=`sys_area`.`id`
+       AND `items`.plan_id=`plan`.id
+		<if test="time5==null and time6==null">
+			and YEAR(createtime)=YEAR(NOW())
+		</if>
+		<if test="time5!=null and time5!=''">
+			and createtime &gt;=#{time5}
+		</if>
+		<if test="time6!=null and time6!=''">
+			and createtime &lt;=#{time6}
+		</if>
+       GROUP BY `sys_area`.`area_name`        
+	</select>
+
+
+
+
+  <insert id="add" useGeneratedKeys="true" keyProperty="id"> 
+		INSERT INTO `Items`(num_actual,new_client,old_client,yx_client,money,available,createtime,dept_id,area_id,area_code,user_id,user_code,activitiesname) 
+		VALUES(#{numActual},#{newClient},#{oldClient},#{yxClient},#{money},#{available},#{createtime},#{deptId},#{areaId},#{areaCode},#{userId},#{userCode},#{activitiesname})
+ </insert>
+  <select id="all" resultType="com.buba.pojo.Items">
+     select `items`.*,`plan`.num_activities,`sys_user`.username,ROUND(items.num_actual/plan.num_activities,2)*100 AS zxl from `items`,`plan`,`sys_user` 
+     where `items`.dept_id=#{deptId} and `items`.user_id=`sys_user`.id and `items`.activitiesname=`plan`.activitiesname
+  </select>
+  <select id="getlike" resultType="com.buba.pojo.Items">
+		select `items`.*,`plan`.num_activities,`sys_user`.username,ROUND(items.num_actual/plan.num_activities,2)*100 AS zxl from `items`,`plan`,`sys_user` 
+        where `items`.dept_id=#{deptId} and `items`.user_id=`sys_user`.id and `items`.activitiesname=`plan`.activitiesname          
+		<if test="time1==null and time2==null">
+			and YEAR(createtime)=YEAR(NOW())
+		</if>
+		<if test="time1!=null and time1!=''">
+			and createtime &gt;=#{time1}
+		</if>
+		<if test="time2!=null and time2!=''">
+			and createtime &lt;=#{time2}
+		</if>
+	</select>
+	<select id="getitems" resultType="com.buba.pojo.Items">
+		SELECT 
+       `plan`.`dept_name`,
+       SUM(`items`.num_actual) AS num_actual,
+       SUM(`plan`.num_activities) AS num_activities,
+       ROUND(SUM(`items`.num_actual)/SUM(`plan`.num_activities),2)*100 AS zxl,  
+       SUM(`items`.new_client) AS new_client,
+       SUM(`items`.old_client) AS old_client,
+       SUM(`items`.yx_client) AS yx_client,
+       SUM(`items`.money) AS money
+       FROM `items`,`plan`
+       WHERE `items`.area_id=#{areaId}
+       AND `items`.plan_id=`plan`.id
+		<if test="time3==null and time4==null">
+			and YEAR(createtime)=YEAR(NOW())
+		</if>
+		<if test="time3!=null and time3!=''">
+			and createtime &gt;=#{time3}
+		</if>
+		<if test="time4!=null and time4!=''">
+			and createtime &lt;=#{time4}
+		</if>
+       GROUP BY `plan`.`dept_name`        
+	</select>
+	<select id="getitemsid" resultType="com.buba.pojo.Items">
+		SELECT 
+       `sys_area`.`area_name`,
+       SUM(`items`.num_actual) AS num_actual,
+       SUM(`plan`.num_activities) AS num_activities,
+       ROUND(SUM(`items`.num_actual)/SUM(`plan`.num_activities),2)*100 AS zxl,  
+       SUM(`items`.new_client) AS new_client,
+       SUM(`items`.old_client) AS old_client,
+       SUM(`items`.yx_client) AS yx_client,
+       SUM(`items`.money) AS money
+       FROM `items`,`plan`,`sys_area`
+       WHERE`items`.area_id=`sys_area`.`id`
+       AND `items`.plan_id=`plan`.id
+		<if test="time5==null and time6==null">
+			and YEAR(createtime)=YEAR(NOW())
+		</if>
+		<if test="time5!=null and time5!=''">
+			and createtime &gt;=#{time5}
+		</if>
+		<if test="time6!=null and time6!=''">
+			and createtime &lt;=#{time6}
+		</if>
+       GROUP BY `sys_area`.`area_name`        
+	</select>
+	<select id="getxian" resultType="com.buba.pojo.Items">
+		select * from `items` 
+        where `items`.dept_id=#{deptId} and YEAR(createtime)=YEAR(NOW())	
+	</select>
+	<select id="getshi" resultType="com.buba.pojo.Items">
+		select 
+		`plan`.`dept_name`,
+		SUM(`items`.money) AS money
+        FROM `items`,`plan`
+       WHERE `items`.area_id=#{areaId}
+       AND `items`.plan_id=`plan`.id 
+       And YEAR(createtime)=YEAR(NOW())	
+       GROUP BY `plan`.`dept_name` 
+	</select>
+	<select id="getsheng" resultType="com.buba.pojo.Items">
+		select 
+		`sys_area`.`area_name`,
+		SUM(`items`.money) AS money
+       FROM `items`,`plan`,`sys_area`
+       WHERE`items`.area_id=`sys_area`.`id`
+       AND `items`.plan_id=`plan`.id
+       And YEAR(createtime)=YEAR(NOW())	
+       GROUP BY `sys_area`.`area_name`
+	</select>
+  </mapper>

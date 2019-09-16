@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper SYSTEM "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+  <mapper namespace="com.buba.dao.PlanDao">  
+  <insert id="add">
+		INSERT INTO `plan`(num_activities,dept_id,dept_name,area_code,area_id,available,type,start_time,end_time,activitiesname) 
+		VALUES(#{numActivities},#{deptId},#{deptName},#{areaCode},#{areaId},#{available},#{type},#{startTime},#{endTime},#{activitiesname})
+ </insert>
+   <select id="allavailable" resultType="com.buba.pojo.Plan">
+     select * from `plan` where dept_id=#{deptId} and available=2 or available=3
+  </select>
+  <select id="allid" resultType="com.buba.pojo.Plan">
+     select * from `plan` where id=#{id}
+  </select>
+  <select id="allareaid" resultType="com.buba.pojo.Plan">
+  select `plan`.* from `plan` where area_id=#{areaId}
+  </select>
+  <update id="update1">
+   update `plan` set available=2 where id=#{id}
+  </update>
+  <update id="update2">
+   update `plan` set available=3 where id=#{id}
+  </update>
+  <delete id="del">
+  delete from `plan` where id=#{id}
+  </delete>
+   <update id="update3">
+   update `plan` set available=1,activitiesname=#{activitiesname},num_activities=#{numActivities},start_time=#{startTime},end_time=#{endTime}  where id=#{id}
+  </update>
+  <select id="email" resultType="com.buba.pojo.User">
+    SELECT * FROM `sys_user` WHERE `area_id`=#{areaId} AND `level`=1
+  </select>
+   <select id="email1" resultType="com.buba.pojo.User">
+    SELECT * FROM `sys_user` WHERE dept_id=#{deptId}
+  </select>
+  </mapper>
